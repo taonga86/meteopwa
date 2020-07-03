@@ -1,29 +1,33 @@
 <ion-app>
   <ion-content>
+    <ion-slides *ngIf="datas">
+      <ion-slide *ngFor="let data of datas.daily; let i = index">
 
-    <ion-grid *ngIf="datas" class="ion-text-center">
-      <ion-row>
-        <ion-col>
-          <ion-text color="light"><p>{{date}}</p></ion-text>
-          <ion-img [ngStyle]="{'height': '230px'}"  src="https://openweathermap.org/img/wn/{{datas?.weather[0]?.icon}}@2x.png"></ion-img>
-          <ion-text color="light">
-            <h1>{{datas?.temp}}</h1>
-          </ion-text>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-text color="light">
-            <h2>{{datas?.name}}</h2>
-            <p>
-              max: {{datas?.temp_max}} <br/>
-              min: {{datas?.temp_min}} <br/>
-              pres: {{datas?.pressure}} <br/>
-              hum: {{datas?.humidity}} <br/>
-            </p>
-          </ion-text>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+        <ion-grid class="ion-text-center">
+          <ion-row>
+            <ion-col>
+              <ion-text color="light"><p>{{data.dt * 1000 | date: 'dd/MM/yyyy'}}</p></ion-text> <!-- HH:mm -->
+              <ion-img [ngStyle]="{'height': '230px'}"  src="https://openweathermap.org/img/wn/{{data?.weather[0]?.icon}}@2x.png"></ion-img>
+              <ion-text color="light">
+                <h1>{{(i === 0) ? datas.current.temp: data?.temp?.day}}</h1>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text color="light">
+                <h2>{{data?.name}}</h2>
+                <p>
+                  max: {{data?.temp.max}} <br/>
+                  min: {{data?.temp.min}} <br/>
+                  pres: {{data?.pressure}} <br/>
+                  hum: {{data?.humidity}} <br/>
+                </p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+    </ion-slides>
   </ion-content>
 </ion-app>

@@ -14,7 +14,7 @@ export class OWMapService {
   ) { }
 
   async getCurrentWeather(lat, long) {
-    const datas = await this._http.get(this.url + `/weather?lat=${lat}&lon=${long}&appid=${environment.appId}&units=metric`).toPromise().catch(err => err);
+    const datas = await this._http.get(this.url + `/onecall?lat=${lat}&lon=${long}&appid=${environment.appId}&units=metric`).toPromise().catch(err => err);
     return datas;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MeteoService } from './services/meteo/meteo.service';
 import { ToastController, Platform } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent implements OnInit {
   date = new Date().toLocaleDateString();
   title = 'Meteo';
   datas: any = null;
+  datas$: Observable<any> = null;
 
   constructor(
     private _api: MeteoService,
@@ -25,7 +27,11 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     const datas = await this._api.getCurrentWeather().catch(err => err);
+    console.log(datas);
     this.datas = datas;
+    // await this._api.getCurrentWeatherReactive();
+    // this._api.datas$
+    // .subscribe(res => this.datas = res).unsubscribe();
   }
 
   async displayToastInstall(platform = null) {

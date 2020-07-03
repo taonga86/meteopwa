@@ -7,11 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { UpdatesNotificationComponent } from './components/updates-notification/updates-notification.component';
+import { UnixTimePipe } from './pipes/unix/unix-time.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UpdatesNotificationComponent
+    UpdatesNotificationComponent,
+    UnixTimePipe
   ],
   imports: [
     BrowserModule,
