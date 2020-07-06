@@ -1,4 +1,11 @@
 <ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="content">
+        <span>Meteo app is running!</span>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ion-content>
     <ion-slides *ngIf="datas">
       <ion-slide *ngFor="let data of datas.daily; let i = index">

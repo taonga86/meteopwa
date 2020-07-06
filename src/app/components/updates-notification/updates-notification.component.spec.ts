@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UpdatesNotificationComponent } from './updates-notification.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from 'src/environments/environment';
 
 describe('UpdatesNotificationComponent', () => {
   let component: UpdatesNotificationComponent;
@@ -8,7 +10,10 @@ describe('UpdatesNotificationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UpdatesNotificationComponent ]
+      declarations: [ UpdatesNotificationComponent ],
+      imports: [
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+      ]
     })
     .compileComponents();
   }));
